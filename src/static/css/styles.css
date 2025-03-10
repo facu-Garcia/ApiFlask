@@ -1,0 +1,176 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.material-symbols-sharp {
+    font-size: 20px !important;
+}
+
+body {
+    padding: 2rem 0;
+    width: 100%;
+}
+
+header,
+main {
+    margin: 0 auto;
+    max-width: 1024px;
+    padding: 1rem;
+}
+
+main {
+    box-shadow: 0px 0px 8px 4px #0003;
+}
+
+h1 {
+    text-align: center;
+    padding: 1rem;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    border: 1px solid #0005;
+    padding: 8px;
+    text-align: left;
+    font-size: .9rem;
+}
+
+.table-actions {
+    display: flex;
+    justify-content: space-around;
+}
+
+.overlay {
+    display: none;
+    height: 100vh;
+    width: 100%;
+    background-color: #0008;
+    position: absolute;
+    z-index: 5;
+    top: 0;
+    left: 0;
+    align-items: center;
+    justify-content: center;
+}
+
+.close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 1.5rem;
+    cursor: pointer;
+    transition: color .1s ease-out;
+}
+
+.close:hover {
+    color: #ce0808;
+}
+
+.modal {
+    position: relative;
+    width: 350px;
+    background-color: #FFF;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: .4rem;
+    font-size: .9rem;
+}
+
+form>input,
+form>label,
+form>button {
+    width: 100%;
+    padding: .2rem;
+}
+
+button {
+    cursor: pointer;
+    background-color: #000;
+    color: #FFF;
+    transition: background-color .2s ease-out;
+}
+
+button:hover {
+    background-color: #000A;
+}
+
+form button {
+    margin-top: 1rem;
+}
+
+.modal button {
+    padding: .4rem;
+    margin-top: .5rem;
+}
+
+section {
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+#search {
+    padding: .2rem .5rem;
+}
+
+.button-action {
+    cursor: pointer;
+    padding: .4rem;
+    background-color: #000;
+    color: #EEE;
+    font-size: .9rem;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+
+.button-action:hover {
+    background-color: #000A;
+    transition: background-color .2s ease-out;
+}
+
+
+.delete-buttons {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.chart-container {
+    width: 100%;
+    max-width: 1024px;
+    height: 80vh;
+    position: relative;
+    background-color: #FFF;
+    padding: 2rem 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#show-graphics {
+    padding: .5rem;
+    position: absolute;
+    z-index: 1;
+    top: 2rem;
+    right: 2rem;
+    cursor: pointer;
+    color: #FFF;
+    background-color: #000;
+    transition: transform .3s ease-out;
+}
+
+#show-graphics:hover {
+    transform: scale(1.05);
+}

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp" />
+    <title>Registro de Creditos</title>
+</head>
+
+<body>
+    <header>
+        <h1>Tabla de Creditos</h1>
+    </header>
+
+
+    <main>
+
+        <section>
+            <input type="text" placeholder="Buscar Cliente..." id="search">
+            <div id="add-credit" class="button-action">
+                <span>Nuevo Registro</span>
+                <span class="material-symbols-sharp">add</span>
+            </div>
+        </section>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Cliente</th>
+                    <th>Monto</th>
+                    <th>Tasa Interes</th>
+                    <th>Plazo (Meses)</th>
+                    <th>Fecha Otorgamiento</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="credito-table-body">
+                {% for credito in creditos %}
+                <tr>
+                    <td>{{ credito.id }}</td>
+                    <td>{{ credito.cliente }}</td>
+                    <td>{{ credito.monto }}</td>
+                    <td>{{ credito.tasa_interes }}</td>
+                    <td>{{ credito.plazo }}</td>
+                    <td>{{ credito.fecha_otorgamiento }}</td>
+                    <td class="table-actions">
+                        <div class="edit-credit button-action" data-id="{{ credito.id }}">
+                            <span class="material-symbols-sharp">edit</span>
+                        </div>
+                        <div class="delete-credit button-action" data-id="{{ credito.id }}">
+                            <span class="material-symbols-sharp">delete</span>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+
+    <div class="overlay">
+        <form id="add-form" class="modal">
+            <span class="material-symbols-sharp close" id="close-add-form">close</span>
+            <h2>Agregar Registro</h2>
+            <label for="cliente">Cliente:</label>
+            <input type="text" id="cliente" name="cliente">
+            <label for="monto">Monto:</label>
+            <input type="number" id="monto" name="monto">
+            <label for="tasa_interes">Tasa de Interés:</label>
+            <input type="number" id="tasa_interes" name="tasa_interes">
+            <label for="plazo">Plazo (Meses):</label>
+            <input type="number" id="plazo" name="plazo">
+            <label for="fecha_otorgamiento">Fecha de Otorgamiento:</label>
+            <input type="date" id="fecha_otorgamiento" name="fecha_otorgamiento">
+            <button type="submit" id="add-credit-form">Agregar</button>
+        </form>
+    </div>
+
+    <div class="overlay" id="edit-overlay">
+        <form id="edit-form" class="modal">
+            <span class="material-symbols-sharp close" id="close-edit-form">close</span>
+            <h2>Editar Crédito</h2>
+            <input type="hidden" id="edit-id">
+            <label for="edit-cliente">Cliente:</label>
+            <input type="text" id="edit-cliente">
+            <label for="edit-monto">Monto:</label>
+            <input type="number" id="edit-monto">
+            <label for="edit-tasa_interes">Tasa de Interés:</label>
+            <input type="number" id="edit-tasa_interes">
+            <label for="edit-plazo">Plazo (Meses):</label>
+            <input type="number" id="edit-plazo">
+            <label for="edit-fecha_otorgamiento">Fecha de Otorgamiento:</label>
+            <input type="date" id="edit-fecha_otorgamiento">
+            <button type="submit">Guardar Cambios</button>
+        </form>
+    </div>
+
+    <div class="overlay" id="delete-overlay">
+        <div class="delete-modal modal">
+            <h2>Eliminar Registro</h2>
+            <p>Esta acción no se puede deshacer.</p>
+            <input type="hidden" id="delete-id">
+            <div class="delete-buttons">
+                <button id="confirm-delete">Eliminar</button>
+                <button id="cancel-delete">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="overlay" id="graphics-overlay">
+        <div class="chart-container">
+            <canvas id="creditosChart"></canvas>
+            <span class="material-symbols-sharp close" id="close-graphics-overlay">close</span>
+        </div>
+    </div>
+
+    <div id="show-graphics" class="button-action">
+        <span>Gráfica</span> 
+        <span class="material-symbols-sharp" >
+            monitoring
+        </span>
+    </div>
+
+
+</body>
+
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</html>
