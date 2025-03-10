@@ -72,31 +72,41 @@ function validateForm(cliente, monto, tasaInteres, plazo, fechaOtorgamiento) {
         alert('El nombre del cliente es obligatorio.');
         return false;
     }
-
-    const nombreRegex = /^[A-Za-z\s]+$/;
+    const nombreRegex = /^[A-ZÀ-ÿ\u00f1\u00d1][a-zà-ÿ\u00f1\u00d1\s]+$/;
     if (!nombreRegex.test(cliente)) {
-        alert('El nombre del cliente debe contener solo letras y espacios.');
+        alert('El nombre del cliente debe comenzar con una letra mayúscula y contener solo letras y espacios.');
         return false;
     }
-
-    if (isNaN(monto) || monto <= 0) {
-        alert('El monto debe ser un número positivo.');
+    if (isNaN(monto) || monto <= 0 || monto > 1000000) {
+        alert('El monto debe ser un número positivo menor a 1,000,000.');
         return false;
     }
-    if (isNaN(tasaInteres) || tasaInteres <= 0) {
-        alert('La tasa de interés debe ser un número positivo.');
+    if (isNaN(tasaInteres) || tasaInteres <= 0 || tasaInteres > 100) {
+        alert('La tasa de interés debe ser un número positivo menor o igual a 100.');
         return false;
     }
-    if (isNaN(plazo) || plazo <= 0 || !Number.isInteger(plazo)) {
-        alert('El plazo debe ser un número entero positivo.');
+    if (isNaN(plazo) || plazo <= 0 || !Number.isInteger(plazo) || plazo > 30) {
+        alert('El plazo debe ser un número entero positivo menor o igual a 30 años.');
         return false;
     }
     if (!fechaOtorgamiento) {
         alert('La fecha de otorgamiento es obligatoria.');
         return false;
     }
+    const fecha = new Date(fechaOtorgamiento);
+    const fechaMinima = new Date(1950, 0, 1);
+    const fechaActual = new Date();
+    if (fecha < fechaMinima) {
+        alert('La fecha de otorgamiento no puede ser anterior al 1 de enero de 1920.');
+        return false;
+    }
+    if (fecha > fechaActual) {
+        alert('La fecha de otorgamiento no puede ser posterior a la fecha actual.');
+        return false;
+    }
     return true;
 }
+
 
 async function handleAddSubmit(e, ui) {
     e.preventDefault();
