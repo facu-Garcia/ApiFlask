@@ -1,63 +1,8 @@
 
-<style>
-body {
-font-family: Arial, sans-serif;
-line-height: 1.6;
-margin: 0;
-padding: 0;
-background-color: #f4f4f4;
-}
-
-.container {
-width: 80%;
-margin: auto;
-overflow: hidden;
-}
-
-header {
-background: #333;
-color: #fff;
-padding-top: 30px;
-min-height: 70px;
-border-bottom: #77aaff 5px solid;
-}
-
-h1 {
-text-align: center;
-text-transform: uppercase;
-margin: 0;
-font-size: px;
-color: #333;
-}
-
-section {
-padding: 20px;
-background: #fff;
-margin-top: 10px;
-}
-
-h2 {
-color: #333;
-}
-
-code {
-background: #eee;
-padding: 2px 4px;
-font-size: 90%;
-}
-
-pre {
-background: #eee;
-padding: 10px;
-overflow-x: auto;
-}
-</style>
-
-<body>
 <header>
-<h1>Documentación del Proyecto</h1>
+<h1>Registro de Creditos (Api)</h1>
 </header>
-<div class="container">
+<div>
 <section>
 <h2>Descripción del Proyecto</h2>
 <p>Este proyecto es una aplicación web desarrollada con Flask que gestiona registros de créditos. Permite
@@ -74,17 +19,6 @@ cliente, monto, tasa de interés, plazo y fecha de otorgamiento.</p>
 <li>Eliminación de registros de crédito.</li>
 <li>Búsqueda de créditos por nombre de cliente.</li>
 <li>Visualización de gráficos relacionados con los créditos.</li>
-</ul>
-</section>
-
-<section>
-<h2>Requisitos Previos</h2>
-<p>Antes de ejecutar este proyecto, asegúrate de tener instalados los siguientes componentes:</p>
-<ul>
-<li>Python 3.x</li>
-<li>Flask</li>
-<li>Flask SQLAlchemy</li>
-<li>Chart.js (para gráficos en el frontend)</li>
 </ul>
 </section>
 
@@ -110,11 +44,6 @@ source venv/bin/activate</code></pre>
 <pre><code>pip install -r requirements.txt</code></pre>
 </li>
 <li>
-<strong>Configurar la base de datos</strong>
-<p>Si usas Flask-Migrate, ejecuta:</p>
-<pre><code>flask db upgrade</code></pre>
-</li>
-<li>
 <strong>Ejecutar el servidor Flask</strong>
 <pre><code>flask run</code></pre>
 </li>
@@ -122,36 +51,80 @@ source venv/bin/activate</code></pre>
 <p>✅ La aplicación estará disponible en: <a href="http://127.0.0.1:5000/" target="_blank">http://127.0.0.1:5000/</a></p>
 </section>
 
-<section>
-<h2>Uso de la Aplicación</h2>
-<p>Una vez que la aplicación esté en funcionamiento, puedes acceder a las siguientes funcionalidades:</p>
-<ul>
-<li><strong>Ver créditos:</strong> La página principal muestra una tabla con todos los créditos registrados.</li>
-<li><strong>Agregar nuevo crédito:</strong> Haz clic en "Nuevo Registro" y completa el formulario para añadir un nuevo crédito.</li>
-<li><strong>Editar crédito:</strong> En la tabla de créditos, haz clic en el ícono de edición junto al crédito que deseas modificar.</li>
-<li><strong>Eliminar crédito:</strong> En la tabla de créditos, haz clic en el ícono de eliminación junto al crédito que deseas eliminar.</li>
-<li><strong>Buscar crédito:</strong> Utiliza la barra de búsqueda para encontrar créditos por nombre de cliente.</li>
-<li><strong>Ver gráficos:</strong> Haz clic en el botón "Gráfica" para visualizar representaciones gráficas de los datos de créditos.</li>
-</ul>
-</section>
+
 
 <section>
-<h2>Estructura del Proyecto</h2>
-<p>El proyecto sigue una estructura modular para mantener el código organizado:</p>
-<ul>
-<li><code>app.py</code>: Archivo principal que inicia la aplicación Flask.</li>
-<li><code>/templates/</code>: Carpeta que contiene las plantillas HTML.</li>
-<li><code>/static/</code>: Carpeta para archivos estáticos como CSS, JavaScript e imágenes.</li>
-<li><code>/src/</code>: Contiene los módulos de la aplicación.
-<ul>
-    <li><code>/database/</code>: Configuración de la base de datos.</li>
-    <li><code>/models/</code>: Definición de los modelos de datos.</li>
-    <li><code>/routes/</code>: Definición de las rutas y lógica de negocio.</li>
-</ul>
-</li>
-</ul>
-</section>
+  <h2>Estructura del Proyecto</h2>
+  <p>El proyecto sigue una estructura modular para mantener el código organizado:</p>
+  <pre><code>
+ApiFlask/
+├── app.py
+├── requirements.txt
+├── instance/
+│   └── database.db
+├── src/
+│   ├── __init__.py
+│   ├── database/
+│   │   └── conexion.py
+│   ├── models/
+│   │   └── modelCredito.py
+│   ├── routes/
+│   │   └── routesCredito.py
+│   ├── static/
+│   │   ├── css/
+│   │   │   └── styles.css
+│   │   └── js/
+│   │       └── main.js
+│   └── templates/
+│       └── index.html
+├── README.md
+  </code></pre>
+  <ul>
+    <li><code>app.py</code>: Archivo principal que inicia la aplicación Flask.</li>
+    <li><code>requirements.txt</code>: Archivo que lista las dependencias del proyecto, permitiendo instalar fácilmente los paquetes necesarios utilizando <code>pip</code>.</li>
+    <li><code>/instance/</code>: Carpeta que contiene archivos específicos de la instancia de la aplicación.
+      <ul>
+        <li><code>database.db</code>: Archivo de base de datos SQLite utilizado por la aplicación para almacenar datos.</li>
+      </ul>
+    </li>
+    <li><code>/src/</code>: Carpeta que contiene los módulos de la aplicación.
+      <ul>
+        <li><code>/__init__.py</code>: Archivo que convierte el directorio en un paquete Python y puede contener la inicialización de la aplicación.</li>
+        <li><code>/database/</code>: Carpeta que maneja la conexión y operaciones relacionadas con la base de datos.
+          <ul>
+            <li><code>conexion.py</code>: Archivo que contiene funciones o clases para establecer y gestionar la conexión a la base de datos.</li>
+          </ul>
+        </li>
+        <li><code>/models/</code>: Carpeta que define los modelos de datos utilizados en la aplicación.
+          <ul>
+            <li><code>modelCredito.py</code>: Archivo que define el modelo relacionado con los créditos en la aplicación.</li>
+          </ul>
+        </li>
+        <li><code>/routes/</code>: Carpeta que define las rutas y la lógica de negocio asociada a ellas.
+          <ul>
+            <li><code>routesCredito.py</code>: Archivo que contiene las rutas y funciones relacionadas con la gestión de créditos.</li>
+          </ul>
+        </li>
+        <li><code>/static/</code>: Carpeta que almacena archivos estáticos accesibles públicamente, como hojas de estilo y scripts.
+          <ul>
+            <li><code>/css/</code>: Carpeta que contiene archivos de estilo en cascada (CSS).
+              <ul>
+                <li><code>styles.css</code>: Archivo que define los estilos visuales de la aplicación.</li>
+              </ul>
+            </li>
+            <li><code>/js/</code>: Carpeta que contiene archivos de JavaScript.
+              <ul>
+                <li><code>main.js</code>: Archivo que contiene scripts para la interactividad y funcionalidades del lado del cliente.</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><code>/templates/</code>: Carpeta que contiene las plantillas HTML utilizadas para renderizar las vistas de la aplicación.
+          <ul>
+            <li><code>index.html</code>: Plantilla principal que se renderiza en la página de inicio de la aplicación.</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    </section>
 
- 
-
-</body>
