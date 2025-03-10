@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <h2>Cómo ejecutar el proyecto</h2>
 <p>Sigue estos pasos para instalar y ejecutar el proyecto en tu máquina local.</p>
 <ol>
